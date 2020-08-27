@@ -4,11 +4,11 @@ import { Redirect,Link } from 'react-router-dom'
 export default class Login extends Component {
    constructor(props){
        super(props)
-       let loggedIn = false
+       
        this.state ={
         username:'',
         password: '',
-        loggedIn
+        loggedIn : false
 
        }
         this.onChange = this.onChange.bind(this)
@@ -47,26 +47,27 @@ export default class Login extends Component {
 //               }))
 //   }
 
-  	//  submitForm = ({ username, password }) => {
-	// 	fetch("https://app-demo-new.herokuapp.com/products",{
-    //         method : "GET",
-    //     })
-	// 	 .then((res) => res.json())
-	// 	.then(member => {
-	// 	const validLogIn = member.find((mem) => mem.username === username && mem.password === password)
-	// 	if (validLogIn === undefined) {
-	// 		alert('Invalid Email and Password')
-	// 	} else {
-    //         console.log(username,password)
-	// 		localStorage.setItem('user_id', validLogIn.id)
-	// 		this.setState({
-    //             loggedIn: true
-    //         })
-    //     }})
-    //     .catch((err) => {
-    //         console.log("error");
-    //     })
-	// }
+  	 submitForm = ({ username, password }) => {
+		fetch("https://buttonclick-login.herokuapp.com/users")
+		 .then((res) => res.json())
+		.then(member => {
+            console.log(member)
+		const validLogIn = member.find((mem) => mem.username === username && mem.password === password)
+		if (validLogIn === undefined) {
+			alert('Invalid Email and Password')
+		} else {
+            console.log(username,password)
+			localStorage.setItem('user_id', validLogIn.id)
+			this.setState({
+                loggedIn: true
+                
+            })
+            //console.log(loggedIn)
+        }})
+        .catch((err) => {
+            console.log("error");
+        })
+	}
 
     render() {
         if(this.state.loggedIn){

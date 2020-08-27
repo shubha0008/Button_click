@@ -7,7 +7,7 @@ export default class Signup extends Component {
         e.preventDefault();
     
         try{
-          var data = await fetch("https://app-demo-new.herokuapp.com/product",{
+          var data = await fetch("https://buttonclick-login.herokuapp.com/user",{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
